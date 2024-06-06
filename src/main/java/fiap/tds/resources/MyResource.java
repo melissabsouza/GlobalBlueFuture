@@ -1,4 +1,4 @@
-package fiap.tds;
+package fiap.tds.resources;
 
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
