@@ -6,6 +6,9 @@ public class Login {
     private String senha;
     private boolean ativo;
 
+    public Login() {
+    }
+
     public Login(double idLogin, String usuario, String senha, boolean ativo) {
         this.idLogin = idLogin;
         this.usuario = usuario;

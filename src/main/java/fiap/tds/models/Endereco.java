@@ -8,7 +8,7 @@ public class Endereco extends Empresa {
     private String complemento;
 
 
-    public Endereco(double idEndereo, int nrLogradouro, double cep, String rua, String complemento) {
+    public Endereco(double idEndereco, int nrLogradouro, double cep, String rua, String complemento) {
         this.idEndereo = idEndereo;
         this.nrLogradouro = nrLogradouro;
         this.cep = cep;

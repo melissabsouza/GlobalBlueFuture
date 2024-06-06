@@ -1,19 +1,21 @@
 package fiap.tds.models;
 
-public class Empresa {
+public class Empresa extends Login {
     private double idEmpresa;
     private String nome;
     private double cnpj;
     private String email;
+    private double idLogin;
 
     public Empresa() {
     }
 
-    public Empresa(double idEmpresa, String nome, double cnpj, String email) {
+    public Empresa(double idEmpresa, String nome, double cnpj, String email, double idLogin) {
         this.idEmpresa = idEmpresa;
         this.nome = nome;
         this.cnpj = cnpj;
         this.email = email;
+        this.idLogin = idLogin;
     }
 
     public double getIdEmpresa() {
@@ -46,5 +48,15 @@ public class Empresa {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @Override
+    public double getIdLogin() {
+        return idLogin;
+    }
+
+    @Override
+    public void setIdLogin(double idLogin) {
+        this.idLogin = idLogin;
     }
 }
