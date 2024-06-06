@@ -2,11 +2,14 @@ package fiap.tds.models;
 
 import java.util.Date;
 
-public class Pedidos {
+public class Pedidos extends Empresa {
     private double idPedido;
     private int qntCredCarb;
     private Date dataPedido;
     private boolean fechado;
+
+    public Pedidos() {
+    }
 
     public Pedidos(double idPedido, int qntCredCarb, Date dataPedido, boolean fechado) {
         this.idPedido = idPedido;
