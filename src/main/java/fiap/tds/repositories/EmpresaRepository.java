@@ -65,11 +65,11 @@ public class EmpresaRepository {
         return cadastros;
     }
 
-    public Optional<Empresa> getById(int id){
+    public Optional<Empresa> getById(int idEmpresa){
         try(var connection = DriverManager.getConnection(URL_ORACLE, USER, PASSWORD);
             var preparedStatement = connection.prepareStatement("SELECT * FROM "+TABLE_NAME+" WHERE ID = ?");
         ){
-            preparedStatement.setInt(1, id);
+            preparedStatement.setInt(1, idEmpresa);
             var resultSet = preparedStatement.executeQuery();
             if (resultSet.next()){
                 return Optional.of(new Empresa(
@@ -116,11 +116,11 @@ public class EmpresaRepository {
             var preparedStatement = connection.prepareStatement(
                     "UPDATE T_GS_EMPRESA SET %s = ?, %s = ?, %s = ?, %s = ?, %s = ? WHERE %s = ?"
                             .formatted(TABLE_NAME,
+                                    TABLE_COLUMNS.get("idEmpresa"),
                                     TABLE_COLUMNS.get("nome"),
                                     TABLE_COLUMNS.get("cnpj"),
                                     TABLE_COLUMNS.get("email"),
-                                    TABLE_COLUMNS.get("idLogin"),
-                                    TABLE_COLUMNS.get("idEmpresa"))))
+                                    TABLE_COLUMNS.get("idLogin"))))
         {
             preparedStatement.setDouble(1, empresa.getIdEmpresa());
             preparedStatement.setString(2, empresa.getNome());
@@ -136,7 +136,7 @@ public class EmpresaRepository {
 
     public void delete(double idEmpresa){
         try(var connection = DriverManager.getConnection(URL_ORACLE, USER, PASSWORD);
-            var preparedStatement = connection.prepareStatement("DELETE FROM "+TABLE_NAME+" WHERE ID = ?");
+            var preparedStatement = connection.prepareStatement("DELETE FROM T_GS_EMPRESA WHERE ID = ?");
         ){
             preparedStatement.setDouble(1, idEmpresa);
             preparedStatement.executeUpdate();
