@@ -49,11 +49,11 @@ public class EmpresaRepository {
         ){
             while (resultSet.next()){
                 cadastros.add(new Empresa(
-                        resultSet.getDouble(TABLE_COLUMNS.get("idEmpresa")),
+                        resultSet.getInt(TABLE_COLUMNS.get("idEmpresa")),
                         resultSet.getString(TABLE_COLUMNS.get("nome")),
-                        resultSet.getDouble(TABLE_COLUMNS.get("cnpj")),
+                        resultSet.getLong(TABLE_COLUMNS.get("cnpj")),
                         resultSet.getString(TABLE_COLUMNS.get("email")),
-                        resultSet.getDouble(TABLE_COLUMNS.get("idLogin"))
+                        resultSet.getInt(TABLE_COLUMNS.get("idLogin"))
                 ));
             }
         }
@@ -67,17 +67,17 @@ public class EmpresaRepository {
 
     public Optional<Empresa> getById(int idEmpresa){
         try(var connection = DriverManager.getConnection(URL_ORACLE, USER, PASSWORD);
-            var preparedStatement = connection.prepareStatement("SELECT * FROM "+TABLE_NAME+" WHERE ID = ?");
+            var preparedStatement = connection.prepareStatement("SELECT * FROM "+TABLE_NAME+" WHERE id_empresa = ?");
         ){
             preparedStatement.setInt(1, idEmpresa);
             var resultSet = preparedStatement.executeQuery();
             if (resultSet.next()){
                 return Optional.of(new Empresa(
-                        resultSet.getDouble(TABLE_COLUMNS.get("idEmpresa")),
+                        resultSet.getInt(TABLE_COLUMNS.get("idEmpresa")),
                         resultSet.getString(TABLE_COLUMNS.get("nome")),
-                        resultSet.getDouble(TABLE_COLUMNS.get("cnpj")),
+                        resultSet.getLong(TABLE_COLUMNS.get("cnpj")),
                         resultSet.getString(TABLE_COLUMNS.get("email")),
-                        resultSet.getDouble(TABLE_COLUMNS.get("idLogin"))
+                        resultSet.getInt(TABLE_COLUMNS.get("idLogin"))
                 ));
             }
         }
@@ -99,11 +99,11 @@ public class EmpresaRepository {
                                     TABLE_COLUMNS.get("email"),
                                     TABLE_COLUMNS.get("idLogin")))
         ) {
-            preparedStatement.setDouble(1, empresa.getIdEmpresa());
+            preparedStatement.setInt(1, empresa.getIdEmpresa());
             preparedStatement.setString(2, empresa.getNome());
-            preparedStatement.setDouble(3, empresa.getCnpj());
+            preparedStatement.setLong(3, empresa.getCnpj());
             preparedStatement.setString(4, empresa.getEmail());
-            preparedStatement.setDouble(5, empresa.getIdLogin());
+            preparedStatement.setInt(5, empresa.getIdLogin());
             preparedStatement.executeUpdate();
         }
         catch(SQLException e){
@@ -111,7 +111,7 @@ public class EmpresaRepository {
         }
     }
 
-    public void update(double idEmpresa, Empresa empresa){
+    public void update(int idEmpresa, Empresa empresa){
         try(var connection = DriverManager.getConnection(URL_ORACLE, USER, PASSWORD);
             var preparedStatement = connection.prepareStatement(
                     "UPDATE T_GS_EMPRESA SET %s = ?, %s = ?, %s = ?, %s = ?, %s = ? WHERE %s = ?"
@@ -122,11 +122,11 @@ public class EmpresaRepository {
                                     TABLE_COLUMNS.get("email"),
                                     TABLE_COLUMNS.get("idLogin"))))
         {
-            preparedStatement.setDouble(1, empresa.getIdEmpresa());
+            preparedStatement.setInt(1, empresa.getIdEmpresa());
             preparedStatement.setString(2, empresa.getNome());
-            preparedStatement.setDouble(3, empresa.getCnpj());
+            preparedStatement.setLong(3, empresa.getCnpj());
             preparedStatement.setString(4, empresa.getEmail());
-            preparedStatement.setDouble(5, empresa.getIdLogin());
+            preparedStatement.setInt(5, empresa.getIdLogin());
             preparedStatement.executeUpdate();
         }
         catch(SQLException e){
@@ -134,9 +134,9 @@ public class EmpresaRepository {
         }
     }
 
-    public void delete(double idEmpresa){
+    public void delete(int idEmpresa){
         try(var connection = DriverManager.getConnection(URL_ORACLE, USER, PASSWORD);
-            var preparedStatement = connection.prepareStatement("DELETE FROM T_GS_EMPRESA WHERE ID = ?");
+            var preparedStatement = connection.prepareStatement("DELETE FROM T_GS_EMPRESA WHERE id_empresa = ?");
         ){
             preparedStatement.setDouble(1, idEmpresa);
             preparedStatement.executeUpdate();

@@ -1,7 +1,7 @@
 package fiap.tds.models;
 
 public class Login {
-    private double idLogin;
+    private int idLogin;
     private String usuario;
     private String senha;
     private boolean ativo;
@@ -9,18 +9,18 @@ public class Login {
     public Login() {
     }
 
-    public Login(double idLogin, String usuario, String senha, boolean ativo) {
+    public Login(int idLogin, String usuario, String senha, boolean ativo) {
         this.idLogin = idLogin;
         this.usuario = usuario;
         this.senha = senha;
         this.ativo = ativo;
     }
 
-    public double getIdLogin() {
+    public int getIdLogin() {
         return idLogin;
     }
 
-    public void setIdLogin(double idLogin) {
+    public void setIdLogin(int idLogin) {
         this.idLogin = idLogin;
     }
 

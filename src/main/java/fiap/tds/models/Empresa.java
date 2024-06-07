@@ -1,16 +1,17 @@
 package fiap.tds.models;
 
 public class Empresa extends Login {
-    private double idEmpresa;
+    private int idEmpresa;
     private String nome;
-    private double cnpj;
+    private long cnpj; // IDs CNPJ podem ser grandes, considere long
     private String email;
-    private double idLogin;
+    private int idLogin;
 
+    // Construtor
     public Empresa() {
     }
 
-    public Empresa(double idEmpresa, String nome, double cnpj, String email, double idLogin) {
+    public Empresa(int idEmpresa, String nome, long cnpj, String email, int idLogin) {
         this.idEmpresa = idEmpresa;
         this.nome = nome;
         this.cnpj = cnpj;
@@ -18,11 +19,12 @@ public class Empresa extends Login {
         this.idLogin = idLogin;
     }
 
-    public double getIdEmpresa() {
+    // Getters e setters
+    public int getIdEmpresa() {
         return idEmpresa;
     }
 
-    public void setIdEmpresa(double idEmpresa) {
+    public void setIdEmpresa(int idEmpresa) {
         this.idEmpresa = idEmpresa;
     }
 
@@ -34,11 +36,11 @@ public class Empresa extends Login {
         this.nome = nome;
     }
 
-    public double getCnpj() {
+    public long getCnpj() {
         return cnpj;
     }
 
-    public void setCnpj(double cnpj) {
+    public void setCnpj(long cnpj) {
         this.cnpj = cnpj;
     }
 
@@ -51,12 +53,11 @@ public class Empresa extends Login {
     }
 
     @Override
-    public double getIdLogin() {
+    public int getIdLogin() {
         return idLogin;
     }
-
     @Override
-    public void setIdLogin(double idLogin) {
+    public void setIdLogin(int idLogin) {
         this.idLogin = idLogin;
     }
 }

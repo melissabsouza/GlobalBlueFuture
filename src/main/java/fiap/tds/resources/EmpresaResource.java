@@ -48,7 +48,7 @@ public class EmpresaResource {
 
     @DELETE
     @Path("{id}")
-    public Response deleteProduto(@PathParam("idE") int idEmpresa){
+    public Response deleteProduto(@PathParam("id") int idEmpresa){
         EmpresaRepository.delete(idEmpresa);
         return Response.status(Response.Status.NO_CONTENT).build();
     }
