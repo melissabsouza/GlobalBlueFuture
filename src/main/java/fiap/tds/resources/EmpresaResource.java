@@ -9,7 +9,7 @@ import jakarta.ws.rs.core.Response;
 
 import java.util.List;
 
-@Path("cadastros")
+@Path("empresas")
 public class EmpresaResource {
     private final EmpresaRepository EmpresaRepository;
 
